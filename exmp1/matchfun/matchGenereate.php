@@ -1,26 +1,22 @@
 <?php
 
-    $numOne = array(rand(0,10000));
-    $numTwo = array(rand(0,10000));
-    $numThree = array(rand(0,10000));
-    $matcFunLvlOne = array("+", "-");
-    $matcFunLvlTwo = array("*", "/");
-    $trueAnswer = 0;
-    $result = 0;
-    funchek($numOne[0], $numTwo[0], $numThree[0], $matcFunLvlOne[0], $result);
-    echo $result;
+    $numOne = array(rand());
+    $numTwo = array(rand());
+    $numThree = array(rand());
 
-    function funchek($num1, $num2, $num3, $mat, $resl)
-    {
-        switch ($mat){
-            case "+":
-                $resl = $num1 + $num2 + $num3;
-                break;
-            case "-":
-                $num1 - $num2 - $num3;
-                break;
-                return $resl;
-        }
+    $FunLvlOne = array("+", "-");
+    $FunLvlTwo = array("*", "/");
+    $FunLvlThr = array("+", "-", "*", "/");
+
+    $result = 0;
+
+    checkNumbers($numOne[0], $numTwo[0], $numThree[0], $FunLvlOne[rand(0,1)]);
+
+    function checkNumbers($num1, $num2, $num3, $pow){
+        $resultik = (string)$num3 . (string)$pow . (string)$num2 . (string)$pow . (string)$num1;
+        echo $resultik;
+        $answer = $resultik; // Функция имеет ошибку, выводит все ввиде строки.
+        echo "=" . $answer;
     }
 
 
@@ -28,5 +24,22 @@
     // (int) $result =  $numOne[0] .  $matcFun[rand(0,4)] . $numTwo[0] . $matcFun[rand(0,4)] . $numThree[0]; // Сборка примера
     // https://youtu.be/syqMx8e1g4U?t=145 link with lesson
 
-    echo $result;
+
+    /* Ответ от GPT
+
+    $str = "10+10+10";
+$result = eval("return $str;");
+echo $result; // выведет 30
+
+
+Однако, использование функции eval() может быть опасным, если в строке будут содержаться вредоносные команды. Лучше использовать более безопасные способы, например, функцию evalMath() из библиотеки math.php:
+
+require_once('math.php');
+$str = "10+10+10";
+$result = evalMath($str);
+echo $result; // выведет 30
+
+
+В этом случае необходимо установить библиотеку math.php.
+*/
 ?>
